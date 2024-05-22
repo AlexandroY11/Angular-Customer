@@ -1,0 +1,33 @@
+<div class="container" style="padding: 5%;">
+    <h1>Customer List</h1>
+    <a routerLink="/customers/create" class="btn btn-outline-success"> Create Customer</a>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Country_Id</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{customer.id}}</td>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.email}}</td>
+                <td *ngIf="customer.country">{{ customer.country.name }}</td>
+                <td *ngIf="!customer.country">N/A</td>
+                <td>
+                    <button type="submit" class="btn btn-primary" [routerLink]="['/customers/edit', customer.id]">Edit</button>
+                    <button type="submit" class="btn btn-danger" (click)="deleteCustomer(customer.id!)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
